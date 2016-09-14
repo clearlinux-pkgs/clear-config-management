@@ -4,7 +4,7 @@
 #
 Name     : clear-config-management
 Version  : 4.3
-Release  : 31
+Release  : 32
 URL      : https://github.com/clearlinux/clear-config-management/archive/4.3.tar.gz
 Source0  : https://github.com/clearlinux/clear-config-management/archive/4.3.tar.gz
 Summary  : No detailed summary available
