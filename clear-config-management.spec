@@ -4,7 +4,7 @@
 #
 Name     : clear-config-management
 Version  : 5.3
-Release  : 45
+Release  : 46
 URL      : https://github.com/clearlinux/clear-config-management/archive/5.3.tar.gz
 Source0  : https://github.com/clearlinux/clear-config-management/archive/5.3.tar.gz
 Summary  : No detailed summary available
@@ -33,11 +33,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1518588281
+export SOURCE_DATE_EPOCH=1526002254
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1518588281
+export SOURCE_DATE_EPOCH=1526002254
 rm -rf %{buildroot}
 %make_install
 
@@ -51,6 +51,9 @@ rm -rf %{buildroot}
 /usr/share/ansible/examples/ceph/group_vars/all
 /usr/share/ansible/examples/ceph/group_vars/osds
 /usr/share/ansible/examples/ceph/hosts
+/usr/share/ansible/plugins/action/__pycache__/_v1_config_template.cpython-36.pyc
+/usr/share/ansible/plugins/action/__pycache__/_v2_config_template.cpython-36.pyc
+/usr/share/ansible/plugins/action/__pycache__/config_template.cpython-36.pyc
 /usr/share/ansible/plugins/action/_v1_config_template.py
 /usr/share/ansible/plugins/action/_v2_config_template.py
 /usr/share/ansible/plugins/action/config_template.py
@@ -68,6 +71,9 @@ rm -rf %{buildroot}
 /usr/share/ansible/roles/ceph-common/handlers/validate-mon.yml
 /usr/share/ansible/roles/ceph-common/handlers/validate-osd.yml
 /usr/share/ansible/roles/ceph-common/meta/main.yml
+/usr/share/ansible/roles/ceph-common/plugins/actions/__pycache__/_v1_config_template.cpython-36.pyc
+/usr/share/ansible/roles/ceph-common/plugins/actions/__pycache__/_v2_config_template.cpython-36.pyc
+/usr/share/ansible/roles/ceph-common/plugins/actions/__pycache__/config_template.cpython-36.pyc
 /usr/share/ansible/roles/ceph-common/plugins/actions/_v1_config_template.py
 /usr/share/ansible/roles/ceph-common/plugins/actions/_v2_config_template.py
 /usr/share/ansible/roles/ceph-common/plugins/actions/config_template.py
