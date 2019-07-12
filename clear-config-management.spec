@@ -4,13 +4,14 @@
 #
 Name     : clear-config-management
 Version  : 5.3
-Release  : 47
+Release  : 48
 URL      : https://github.com/clearlinux/clear-config-management/archive/5.3.tar.gz
 Source0  : https://github.com/clearlinux/clear-config-management/archive/5.3.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: clear-config-management-data
+Requires: clear-config-management-data = %{version}-%{release}
+Requires: clear-config-management-license = %{version}-%{release}
 
 %description
 # Clear Config Management
@@ -25,6 +26,14 @@ Group: Data
 data components for the clear-config-management package.
 
 
+%package license
+Summary: license components for the clear-config-management package.
+Group: Default
+
+%description license
+license components for the clear-config-management package.
+
+
 %prep
 %setup -q -n clear-config-management-5.3
 
@@ -32,13 +41,28 @@ data components for the clear-config-management package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1526002254
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562975581
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
+
 %install
-export SOURCE_DATE_EPOCH=1526002254
+export SOURCE_DATE_EPOCH=1562975581
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/clear-config-management
+cp LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/LICENSE
+cp roles/ceph-common/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/roles_ceph-common_LICENSE
+cp roles/ceph-mds/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/roles_ceph-mds_LICENSE
+cp roles/ceph-mon/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/roles_ceph-mon_LICENSE
+cp roles/ceph-osd/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/roles_ceph-osd_LICENSE
 %make_install
 
 %files
@@ -51,9 +75,6 @@ rm -rf %{buildroot}
 /usr/share/ansible/examples/ceph/group_vars/all
 /usr/share/ansible/examples/ceph/group_vars/osds
 /usr/share/ansible/examples/ceph/hosts
-/usr/share/ansible/plugins/action/__pycache__/_v1_config_template.cpython-36.pyc
-/usr/share/ansible/plugins/action/__pycache__/_v2_config_template.cpython-36.pyc
-/usr/share/ansible/plugins/action/__pycache__/config_template.cpython-36.pyc
 /usr/share/ansible/plugins/action/_v1_config_template.py
 /usr/share/ansible/plugins/action/_v2_config_template.py
 /usr/share/ansible/plugins/action/config_template.py
@@ -71,9 +92,6 @@ rm -rf %{buildroot}
 /usr/share/ansible/roles/ceph-common/handlers/validate-mon.yml
 /usr/share/ansible/roles/ceph-common/handlers/validate-osd.yml
 /usr/share/ansible/roles/ceph-common/meta/main.yml
-/usr/share/ansible/roles/ceph-common/plugins/actions/__pycache__/_v1_config_template.cpython-36.pyc
-/usr/share/ansible/roles/ceph-common/plugins/actions/__pycache__/_v2_config_template.cpython-36.pyc
-/usr/share/ansible/roles/ceph-common/plugins/actions/__pycache__/config_template.cpython-36.pyc
 /usr/share/ansible/roles/ceph-common/plugins/actions/_v1_config_template.py
 /usr/share/ansible/roles/ceph-common/plugins/actions/_v2_config_template.py
 /usr/share/ansible/roles/ceph-common/plugins/actions/config_template.py
@@ -179,3 +197,11 @@ rm -rf %{buildroot}
 /usr/share/ansible/roles/ceph-osd/templates/ceph-osd-run.sh.j2
 /usr/share/ansible/roles/ceph-osd/templates/ceph-osd.service.j2
 /usr/share/ansible/roles/ceph-osd/templates/osd.conf.j2
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/clear-config-management/LICENSE
+/usr/share/package-licenses/clear-config-management/roles_ceph-common_LICENSE
+/usr/share/package-licenses/clear-config-management/roles_ceph-mds_LICENSE
+/usr/share/package-licenses/clear-config-management/roles_ceph-mon_LICENSE
+/usr/share/package-licenses/clear-config-management/roles_ceph-osd_LICENSE
