@@ -4,7 +4,7 @@
 #
 Name     : clear-config-management
 Version  : 5.3
-Release  : 48
+Release  : 49
 URL      : https://github.com/clearlinux/clear-config-management/archive/5.3.tar.gz
 Source0  : https://github.com/clearlinux/clear-config-management/archive/5.3.tar.gz
 Summary  : No detailed summary available
@@ -36,33 +36,34 @@ license components for the clear-config-management package.
 
 %prep
 %setup -q -n clear-config-management-5.3
+cd %{_builddir}/clear-config-management-5.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562975581
+export SOURCE_DATE_EPOCH=1604356997
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1562975581
+export SOURCE_DATE_EPOCH=1604356997
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/clear-config-management
-cp LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/LICENSE
-cp roles/ceph-common/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/roles_ceph-common_LICENSE
-cp roles/ceph-mds/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/roles_ceph-mds_LICENSE
-cp roles/ceph-mon/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/roles_ceph-mon_LICENSE
-cp roles/ceph-osd/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/roles_ceph-osd_LICENSE
+cp %{_builddir}/clear-config-management-5.3/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/598f87f072f66e2269dd6919292b2934dbb20492
+cp %{_builddir}/clear-config-management-5.3/roles/ceph-common/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/af86318aebfa4c8a70da4e5d234b19b2ecc428f9
+cp %{_builddir}/clear-config-management-5.3/roles/ceph-mds/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/af86318aebfa4c8a70da4e5d234b19b2ecc428f9
+cp %{_builddir}/clear-config-management-5.3/roles/ceph-mon/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/af86318aebfa4c8a70da4e5d234b19b2ecc428f9
+cp %{_builddir}/clear-config-management-5.3/roles/ceph-osd/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-management/af86318aebfa4c8a70da4e5d234b19b2ecc428f9
 %make_install
 
 %files
@@ -200,8 +201,5 @@ cp roles/ceph-osd/LICENSE %{buildroot}/usr/share/package-licenses/clear-config-m
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/clear-config-management/LICENSE
-/usr/share/package-licenses/clear-config-management/roles_ceph-common_LICENSE
-/usr/share/package-licenses/clear-config-management/roles_ceph-mds_LICENSE
-/usr/share/package-licenses/clear-config-management/roles_ceph-mon_LICENSE
-/usr/share/package-licenses/clear-config-management/roles_ceph-osd_LICENSE
+/usr/share/package-licenses/clear-config-management/598f87f072f66e2269dd6919292b2934dbb20492
+/usr/share/package-licenses/clear-config-management/af86318aebfa4c8a70da4e5d234b19b2ecc428f9
